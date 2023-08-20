@@ -20,6 +20,7 @@
 #include <linux/module.h>
 #include <linux/vmalloc.h>
 #include <linux/moduleparam.h>
+#include <linux/backing-dev.h>
 #include <linux/spinlock_types.h>
 #ifdef BLK_MQ_MODE
 #include <linux/blk-mq.h>
@@ -326,6 +327,7 @@ static int sbdd_create(void)
 
 	/* Configure queue */
 	blk_queue_logical_block_size(__sbdd.q, SBDD_SECTOR_SIZE);
+	__sbdd.q->backing_dev_info->capabilities |= BDI_CAP_STABLE_WRITES;
 
 	/* A disk must have at least one minor */
 	pr_info("allocating disk\n");

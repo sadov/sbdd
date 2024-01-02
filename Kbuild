@@ -34,4 +34,4 @@
 ccflags-y := -Wall
 # CFLAGS_sbdd.o := -DDEBUG
 
-obj-m := sbdd.o
+obj-m := sbdd.o pbdd.o
